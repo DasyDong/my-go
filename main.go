@@ -1,34 +1,16 @@
 package main
 
-import (
-	"fmt"
-	"os"
-	"os/signal"
-	"syscall"
-)
-
-// 生产者: 生成 factor 整数倍的序列
-func Producer(factor int, out chan<- int) {
-	for i := 0; ; i++ {
-		out <- i*factor
-	}
-}
-
-// 消费者
-func Consumer(in <-chan int) {
-	for v := range in {
-		fmt.Println(v)
-	}
-}
+import "fmt"
 
 func main() {
-	ch := make(chan int, 64) // 成果队列
+	var a = [...]int{1, 2, 3} // a 是一个数组
+	var b = &a                // b 是指向数组的指针
 
-	go Producer(3, ch) // 生成 3 的倍数的序列
-	go Producer(5, ch) // 生成 5 的倍数的序列
-	go Consumer(ch)    // 消费 生成的队列
-	// Ctrl+C 退出
-	sig := make(chan os.Signal, 1)
-	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
-	fmt.Printf("quit (%v)\n", <-sig)
+	fmt.Println(a[0], a[1])   // 打印数组的前2个元素
+	fmt.Println(b[0], b[1])   // 通过数组指针访问数组元素的方式和数组类似
+
+	for i, v := range b {     // 通过数组指针迭代数组的元素
+		fmt.Println(i, v)
+	}
+
 }
