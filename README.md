@@ -11,8 +11,8 @@
 [操作gitlab](go-git.go)
 
 ## Go语言常见坑
-[Go语言常见坑](trap.md)
+[Go语言常见坑](05-trap.md)
 
 ## 有趣的代码片段
-[有趣的代码片段](gems.md)
+[有趣的代码片段](04-gems.md)
 
